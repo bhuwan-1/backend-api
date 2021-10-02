@@ -1,5 +1,5 @@
 
-import React from 'react';
+import { React, useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,6 +10,24 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { CSVLink} from 'react-csv'
 import Button from '../Download/Button';
+import {
+  useQuery,
+  gql
+} from "@apollo/client";
+
+
+
+const WATER_INFOS = gql`
+query{
+  waterInfos {
+    location
+    tank1
+    tank2
+    tank3
+    tank4
+  }    
+} 
+`;
 
 
 const useStyles = makeStyles({
@@ -18,24 +36,14 @@ const useStyles = makeStyles({
   },
 });
 
-function createData(location, tank1, tank2, tank3, tank4) {
-  return { location, tank1, tank2, tank3, tank4 };
-}
-
-const rows = [
-  createData('Tech Park', 15, 6.0, 5.0, 4.0),
-  createData('Sangaygang', 2.0, 9.0, 7, 4.3),
-  createData('Lungtenphug', 6.0, 16.0, 14, 6.0),
-  createData('Taba', 5.0, 3.7, 7, 4.3),
-  createData('Kabesa', 6, 16.0, 9, 3.9),
-];
-
 
 export default function MyTable() {
   const classes = useStyles();
 
+  const { loading, error, data } = useQuery(WATER_INFOS);
+
+
   return (
-    
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
@@ -48,7 +56,7 @@ export default function MyTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {data?.waterInfos.map((row) => (
             <TableRow key={row.location}>
               <TableCell component="th" scope="row">
                 {row.location}
@@ -62,11 +70,11 @@ export default function MyTable() {
         </TableBody>
       </Table>
       
-      <CSVLink data={rows}
+      {/* <CSVLink data={data}
       filename={"waterinfo.csv"}
       target="_blank"
       > <Button/> 
-      </CSVLink>
+      </CSVLink> */}
     </TableContainer>
 
   );

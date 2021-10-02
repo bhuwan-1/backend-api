@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.4.15",
     "@craco/craco": "^6.2.0",
     "@material-ui/core": "^4.12.3",
     "@testing-library/jest-dom": "^5.14.1",
@@ -10,8 +11,10 @@
     "@testing-library/user-event": "^12.8.3",
     "antd": "^4.16.8",
     "chart.js": "^3.5.0",
+    "graphql": "^15.6.0",
     "mapbox-gl": "^2.4.0",
     "mqtt": "^4.2.8",
+    "ra-data-graphql": "^3.18.3",
     "react": "^17.0.2",
     "react-chartjs-2": "^3.0.4",
     "react-csv": "^2.0.3",

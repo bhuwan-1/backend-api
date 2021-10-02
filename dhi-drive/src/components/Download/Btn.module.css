@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 110px;
+    color: white;
+    background-color: rgba(8, 111, 245, 0.781);
+    /* background-color: rgb(58, 58, 255); */
+
+    border-radius: 4px;
+    margin: 15px;
+    padding: 5px;
+}
+
+.btn:hover{
+    background-color: rgb(58, 58, 255);
+
+}
